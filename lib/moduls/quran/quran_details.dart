@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +26,7 @@ class _QuranDetailsState extends State<QuranDetails> {
     return CustomBackground(
         child: Scaffold(
       appBar: AppBar(
-        title: const Text("Islami"),
+        title: Text("islami".tr()),
       ),
       body: verses.isEmpty
           ? const Center(
@@ -36,10 +37,10 @@ class _QuranDetailsState extends State<QuranDetails> {
               margin: const EdgeInsets.only(
                   bottom: 20, left: 25, right: 25, top: 80),
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: theme.primaryColor,
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    const BoxShadow(
+                  boxShadow: const [
+                    BoxShadow(
                         blurRadius: 5, spreadRadius: 5, color: Colors.black12)
                   ]),
               child: Column(

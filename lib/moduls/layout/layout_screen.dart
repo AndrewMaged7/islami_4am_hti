@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_4pm/core/widgets/custom_background.dart';
 import 'package:islami_4pm/moduls/layout/screens/hadeth_screen.dart';
@@ -17,47 +18,54 @@ class LayoutScreen extends StatefulWidget {
 }
 
 class _LayoutScreenState extends State<LayoutScreen> {
-  int selectedIndex= 0;
-  List<String> titles = ["Islami","Hadeth" ,"Sebha" , "Radio","settings"];
+  int selectedIndex = 0;
   List<Widget> screens = [
     QuranScreen(),
     HadethScreen(),
-    SebhaScreen(),
-    RadioScreen(),
-    SettingsScreen(),
+    const SebhaScreen(),
+    const RadioScreen(),
+    const SettingsScreen(),
   ];
+
   PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
+    List<String> titles = ["islami", "hadeth", "sebha", "radio", "settings"];
 
     return CustomBackground(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            titles[selectedIndex],
+            titles[selectedIndex].tr(),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex:selectedIndex ,
-          onTap: (value) {
-            selectedIndex = value;
-            pageController.animateToPage(value,curve: Curves.decelerate,duration: Duration(milliseconds: 800));
-            setState(() {});
-          },
+            currentIndex: selectedIndex,
+            onTap: (value) {
+              selectedIndex = value;
+              pageController.animateToPage(value,
+                  curve: Curves.decelerate,
+                  duration: const Duration(milliseconds: 800));
+              setState(() {});
+            },
             items: [
-              BottomNav(image: "assets/icons/quran_icn.png", text: "Quran"),
-              BottomNav(image: "assets/icons/hadeth.png", text: "Hadeth"),
-              BottomNav(image: "assets/icons/sebha.png", text: "Sebha"),
-              BottomNav(image: "assets/icons/radio.png", text: "Radio"),
-              BottomNavigationBarItem(icon: Icon(Icons.settings,),label: "Settings"),
+              BottomNav(
+                  image: "assets/icons/quran_icn.png", text: "quran".tr()),
+              BottomNav(image: "assets/icons/hadeth.png", text: "hadeth".tr()),
+              BottomNav(image: "assets/icons/sebha.png", text: "sebha".tr()),
+              BottomNav(image: "assets/icons/radio.png", text: "radio".tr()),
+              BottomNavigationBarItem(
+                icon: const Icon(
+                  Icons.settings,
+                ),
+                label: context.tr("settings"),
+              )
             ]),
         body: PageView(
-          controller:pageController ,
+          controller: pageController,
           onPageChanged: (value) {
             selectedIndex = value;
-            setState(() {
-
-            });
+            setState(() {});
           },
           children: screens,
         ),

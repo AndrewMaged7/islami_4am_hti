@@ -1,140 +1,158 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_4pm/core/thems/themes.dart';
+import 'package:islami_4pm/moduls/layout/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
   @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     return Column(
       children: [
         InkWell(
           onTap: () {
-            showLangSheet(context);
+            showLangSheet(context,provider);
           },
           child: Container(
             width: double.infinity,
-            padding: EdgeInsets.all(20),
-            margin: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: AppTheme.yellowLightColor,
-                width: 2
-              )
-            ),
-            child: Text("English"),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: AppTheme.yellowLightColor, width: 2)),
+            child: const Text("English"),
           ),
         ),
         InkWell(
           onTap: () {
-            showThemeSheet(context);
+            showThemeSheet(context,provider);
           },
           child: Container(
             width: double.infinity,
-            padding: EdgeInsets.all(20),
-            margin: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: AppTheme.yellowLightColor,
-                width: 2
-              )
-            ),
-            child: Text("Light"),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: AppTheme.yellowLightColor, width: 2)),
+            child: const Text("Light"),
           ),
         ),
       ],
     );
   }
-  showLangSheet(BuildContext context){
+
+  showLangSheet(BuildContext context,SettingsProvider provider) {
+
+    var theme = Theme.of(context);
     Size size = MediaQuery.of(context).size;
     showModalBottomSheet(
+      backgroundColor: theme.primaryColor,
       constraints: BoxConstraints(
         maxHeight: size.height * 0.4,
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       showDragHandle: true,
-      context: context, builder: (context) {
-      return Container(
-        child: Column(
+      context: context,
+      builder: (context) {
+        return Column(
           children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(
-                      color: AppTheme.yellowLightColor,
-                      width: 2
-                  )
+            InkWell(
+              onTap: () {
+                provider.changeLang(context, "en");
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border:
+                        Border.all(color: AppTheme.yellowLightColor, width: 2)),
+                child: const Text("English"),
               ),
-              child: Text("English"),
             ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(
-                      color: AppTheme.yellowLightColor,
-                      width: 2
-                  )
+            InkWell(
+              onTap: () {
+                provider.changeLang(context, "ar");
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border:
+                        Border.all(color: AppTheme.yellowLightColor, width: 2)),
+                child: const Text("العربية"),
               ),
-              child: Text("العربية"),
             ),
           ],
-        ),
-      );
-    },);
+        );
+      },
+    );
   }
-  showThemeSheet(BuildContext context){
+
+  showThemeSheet(BuildContext context,SettingsProvider provider) {
+    var theme = Theme.of(context);
+
     Size size = MediaQuery.of(context).size;
     showModalBottomSheet(
+      backgroundColor: theme.primaryColor,
       constraints: BoxConstraints(
         maxHeight: size.height * 0.4,
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       showDragHandle: true,
-      context: context, builder: (context) {
-      return Container(
-        child: Column(
+      context: context,
+      builder: (context) {
+        return Column(
           children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(
-                      color: AppTheme.yellowLightColor,
-                      width: 2
-                  )
+            InkWell(
+              onTap: () {
+                provider.changeTheme(ThemeMode.dark);
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                        color: AppTheme.yellowLightColor, width: 2)),
+                child: const Text("Dark"),
               ),
-              child: Text("Dark"),
             ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(
-                      color: AppTheme.yellowLightColor,
-                      width: 2
-                  )
+            InkWell(
+              onTap: () {
+                provider.changeTheme(ThemeMode.light);
+                Navigator.pop(context);
+
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border:
+                        Border.all(color: AppTheme.yellowLightColor, width: 2)),
+                child: const Text("Light"),
               ),
-              child: Text("Light"),
             ),
           ],
-        ),
-      );
-    },);
+        );
+      },
+    );
   }
 }

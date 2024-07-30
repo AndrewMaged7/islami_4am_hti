@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_4pm/moduls/hadeth/hadeth_details.dart';
@@ -26,7 +27,7 @@ class _HadethScreenState extends State<HadethScreen> {
           Image.asset("assets/images/hadeth_logo.png"),
           const Divider(),
           Text(
-            "Ahadeth",
+            "ahadeth".tr(),
             style: theme.textTheme.bodyLarge,
           ),
           const Divider(),
@@ -36,11 +37,16 @@ class _HadethScreenState extends State<HadethScreen> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, HadethDetails.routeName,arguments: hadethText[index]);
+                    Navigator.pushNamed(context, HadethDetails.routeName,
+                        arguments: hadethText[index]);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(hadethTitle[index],textAlign: TextAlign.center,style: theme.textTheme.bodyLarge,),
+                    child: Text(
+                      hadethTitle[index],
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.bodyLarge,
+                    ),
                   ),
                 );
               },
@@ -58,7 +64,6 @@ class _HadethScreenState extends State<HadethScreen> {
       String title = hadethText[i].trim().split("\n")[0].trim();
       if (title.isNotEmpty) {
         hadethTitle.add(title);
-
       }
     }
     setState(() {});

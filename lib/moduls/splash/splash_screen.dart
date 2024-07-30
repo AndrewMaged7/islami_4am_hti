@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:islami_4pm/moduls/layout/layout_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../layout/provider/settings_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = "SplashScreen";
@@ -14,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       Navigator.pushNamedAndRemoveUntil(
         context,
         LayoutScreen.routeName,
@@ -26,6 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/images/splash.png");
+    var provider = Provider.of<SettingsProvider>(context);
+
+    return Image.asset(provider.themeMode == ThemeMode.light
+        ? "assets/images/splash.png"
+        : "assets/images/splash_dark.png");
   }
 }

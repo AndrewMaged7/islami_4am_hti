@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_4pm/moduls/quran/quran_details.dart';
 
@@ -360,16 +361,23 @@ class SurahNameWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, QuranDetails.routeName,
-            arguments: SurahData(index, englishQuranSurahs[index]));
+            arguments: SurahData(
+                index,
+                context.locale == const Locale("ar")
+                    ? arabicQuranSuras[index]
+                    : englishQuranSurahs[index]));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-              child: Text(englishQuranSurahs[index],
+              child: Text(
+                  context.locale == const Locale("ar")
+                      ? arabicQuranSuras[index]
+                      : englishQuranSurahs[index],
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyLarge!.copyWith(fontSize: 25))),
-          SizedBox(
+          const SizedBox(
             height: 47,
             child: VerticalDivider(),
           ),

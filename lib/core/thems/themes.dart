@@ -6,6 +6,7 @@ class AppTheme{
   static const Color yellowLightColor = Color(0xffB7935F);
   static const Color yellowDarkColor = Color(0xffFACC1D);
   static ThemeData lightTheme = ThemeData(
+    primaryColor: Colors.white,
     scaffoldBackgroundColor: Colors.transparent,
     fontFamily: GoogleFonts.tajawal().fontFamily,
     appBarTheme:AppBarTheme(
@@ -49,6 +50,7 @@ class AppTheme{
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.transparent,
     fontFamily: GoogleFonts.tajawal().fontFamily,
+      primaryColor: Color(0xff141A2E),
 
     appBarTheme:  AppBarTheme(
       backgroundColor: Colors.transparent,

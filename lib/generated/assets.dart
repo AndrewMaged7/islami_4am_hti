@@ -60,6 +60,7 @@ class Assets {
   static const String iconsSebha = 'assets/icons/sebha.png';
   static const String imagesBodySebhaDark = 'assets/images/body_sebha_dark.png';
   static const String imagesBodySebhaLogo = 'assets/images/body_sebha_logo.png';
+  static const String imagesDarkBg = 'assets/images/dark_bg.png';
   static const String imagesHadethLogo = 'assets/images/hadeth_logo.png';
   static const String imagesHeadSebhaDark = 'assets/images/head_sebha_dark.png';
   static const String imagesHeadSebhaLogo = 'assets/images/head_sebha_logo.png';
@@ -182,5 +183,7 @@ class Assets {
   static const String suras97 = 'assets/Suras/97.txt';
   static const String suras98 = 'assets/Suras/98.txt';
   static const String suras99 = 'assets/Suras/99.txt';
+  static const String translationsAr = 'assets/translations/ar.json';
+  static const String translationsEn = 'assets/translations/en.json';
 
 }
